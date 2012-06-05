@@ -1,0 +1,7 @@
+clobber=
+clobber_rdoc=
+rdoc=
+rdoc/index.html=
+rdoc\:publish=
+rerdoc=
+test=

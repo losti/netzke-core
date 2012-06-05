@@ -120,6 +120,8 @@ Ext.apply(Netzke.classes.Core.Mixin, {
     // and merges them with the corresponding config from this.netzkeComponents.
     // This way it becomes ready to be instantiated properly by Ext.
     this.detectComponents(this.items);
+    // also check dockedItems
+    if (this.dockedItems) this.detectComponents(this.dockedItems);
 
     this.normalizeTools();
 
