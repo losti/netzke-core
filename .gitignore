@@ -12,4 +12,3 @@ test/core_test_app/public/javascripts
 test/core_test_app/public/stylesheets
 *.gem
 .vimrc
-nbproject
