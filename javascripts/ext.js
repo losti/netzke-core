@@ -12,15 +12,14 @@ Ext.state.Provider.prototype.set = Ext.emptyFn;
 // Checking Ext JS version: both major and minor versions must be the same
 (function(){
   var requiredVersionMajor = 4,
-      requiredVersionMinor = 0,
+      requiredVersionMinor = 1,
       extVersion = Ext.getVersion('extjs'),
       currentVersionMajor = extVersion.getMajor(),
       currentVersionMinor = extVersion.getMinor(),
-      requiredString = "" + requiredVersionMajor + "." + requiredVersionMinor + ".x",
-      currentString = "" + currentVersionMajor + "." + currentVersionMinor + ".x";
+      requiredString = "" + requiredVersionMajor + "." + requiredVersionMinor + ".x";
 
   if (requiredVersionMajor != currentVersionMajor || requiredVersionMinor != currentVersionMinor) {
-    Netzke.warning("Ext " + requiredString + " required. You have " + currentString + ".");
+    Netzke.warning("Ext JS " + requiredString + " required (you have " + extVersion.toString() + ").");
   }
 })();
 
@@ -285,7 +284,8 @@ Ext.apply(Netzke.classes.Core.Mixin, {
     // Show loading mask if possible
     var containerEl = (containerCmp || this).getEl();
     if (this.componentLoadMask && containerEl){
-      storedConfig.loadMaskCmp = new Ext.LoadMask(containerEl, this.componentLoadMask);
+      //storedConfig.loadMaskCmp = new Ext.LoadMask(containerEl, this.componentLoadMask);
+      storedConfig.loadMaskCmp = new Ext.LoadMask(Ext.getBody(), this.componentLoadMask);
       storedConfig.loadMaskCmp.show();
     }
 
@@ -436,8 +436,8 @@ Ext.apply(Netzke.classes.Core.Mixin, {
       return false;
     }
 
-    if (this.feedbackGhost) {
-      this.feedbackGhost.showFeedback(msg);
+    if (Netzke.componentMixin.feedbackGhost) {
+      Netzke.componentMixin.feedbackGhost.showFeedback(msg);
     } else {
       // there's no application to show the feedback - so, we do it ourselves
       if (typeof msg == 'string'){
