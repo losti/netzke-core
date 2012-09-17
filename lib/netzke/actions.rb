@@ -89,7 +89,7 @@ module Netzke
 
           # Default text and tooltip
           c[:text] ||= c[:name].humanize
-          c[:tooltip] ||= c[:name].humanize
+          c[:tooltip] ||= ''
 
           # If we have an I18n for it, use it
           default_text = I18n.t(i18n_id + ".actions." + c[:name], :default => "")
