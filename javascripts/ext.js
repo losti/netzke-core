@@ -225,7 +225,8 @@ Ext.apply(Netzke.classes.Core.Mixin, {
     if (Ext.isObject(o)) {
       if ((typeof o.handler === 'string') && Ext.isFunction(this[o.handler.camelize(true)])) {
          // This button config has a handler specified as string - replace it with reference to a real function if it exists
-        o.handler = this[o.handler.camelize(true)].createDelegate(this);
+        //o.handler = this[o.handler.camelize(true)].createDelegate(this);
+        o.handler = Ext.bind(this[o.handler.camelize(true)],this);
       }
       // TODO: this should be configurable!
       Ext.each(["bbar", "tbar", "fbar", "menu", "items", "contextMenu", "buttons", "dockedItems"], function(key){
