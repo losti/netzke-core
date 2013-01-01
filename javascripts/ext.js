@@ -96,7 +96,7 @@ Netzke.directProvider = new Netzke.classes.NetzkeRemotingProvider({
   actions: {},
   maxRetries: Netzke.core.directMaxRetries,
   enableBuffer: true, // buffer/batch requests within 10ms timeframe
-  timeout: 30000 // 30s timeout per request
+  timeout: 18000000 // 30s timeout per request
 });
 
 Ext.Direct.addProvider(Netzke.directProvider);
