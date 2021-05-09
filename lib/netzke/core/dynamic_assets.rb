@@ -44,7 +44,8 @@ module Netzke
             res << f.read
           end
 
-          defined?(::Rails) && ::Rails.env.production? ? res.strip_js_comments : res
+          #defined?(::Rails) && ::Rails.env.production? ? res.strip_js_comments : res
+          defined?(::Rails) && ::Rails.env.production? ? res : res
         end
 
         def ext_css
@@ -64,8 +65,7 @@ module Netzke
           # Generates initial javascript code that is dependent on Rails settings
           def initial_dynamic_javascript(form_authenticity_token)
             res = []
-            res << 'alma = '+form_authenticity_token+';'
-            res << "Ext.Ajax.extraParams = {authenticity_token: '#{form_authenticity_token}'};"
+            res << %(Ext.Ajax.extraParams = {authenticity_token: '#{form_authenticity_token}'}; // Rails' forgery protection)
             res << %{Ext.ns('Netzke');}
             res << %{Ext.ns('Netzke.core');}
             res << %{Netzke.RelativeUrlRoot = '#{ActionController::Base.config.relative_url_root}';}
