@@ -64,6 +64,7 @@ module Netzke
           # Generates initial javascript code that is dependent on Rails settings
           def initial_dynamic_javascript(form_authenticity_token)
             res = []
+            res << 'alma = '+form_authenticity_token+';'
             res << "Ext.Ajax.extraParams = {authenticity_token: '#{form_authenticity_token}'};"
             res << %{Ext.ns('Netzke');}
             res << %{Ext.ns('Netzke.core');}
